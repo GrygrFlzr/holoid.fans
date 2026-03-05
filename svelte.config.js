@@ -9,23 +9,6 @@ const config = {
 		adapter: adapter(),
 		prerender: {
 			origin: 'https://holoid.fans'
-		},
-		build: {
-			reportCompressedSize: false,
-			sourcemap: false,
-			modulePreload: {
-				polyfill: false
-			},
-			minify: 'terser',
-			cssMinify: 'lightningcss',
-			terserOptions: {
-				ecma: 2020,
-				sourceMap: false,
-				module: true,
-				format: {
-					semicolons: false
-				}
-			}
 		}
 	}
 };
