@@ -3,7 +3,7 @@ import type { PageLoad } from './$types';
 // false during open submission phase
 // set to true after removing edit permissions from sheet
 // to optimize out the web requests
-export const ssr = false;
+export const ssr = true;
 
 const talentLangMap: Record<
 	string,
@@ -54,7 +54,7 @@ export const load: PageLoad = async ({ fetch, params }) => {
 		.split('\n')
 		.map((row) => {
 			const [author, message] = row.trim().split('\t');
-			return { author, message };
+			return { author, message: message as string | undefined };
 		})
 		.slice(1);
 	const sticker_tsv = await (await fetch(stickerSource)).text();
