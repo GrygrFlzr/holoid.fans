@@ -4,22 +4,24 @@
 	import { hashStringToBigInt, pcg64 } from '$lib/pcg';
 
 	let { data }: { data: PageData } = $props();
-	const numericSeed = hashStringToBigInt(data.seed);
-	const rng = pcg64(numericSeed);
-	const stickers = rng.shuffleArray(data.stickers);
+	const numericSeed = $derived(hashStringToBigInt(data.seed));
+	const rng = $derived(pcg64(numericSeed));
+	const stickers = $derived(rng.shuffleArray(data.stickers));
 	// svelte-ignore non_reactive_update
 	let stickerIndex = 0;
 
 	function isSentenceStart(str: string | undefined) {
-		let msg = (str || '').trimStart();
+		if (!str) return false;
+		let msg = str.trimStart();
 		return msg.startsWith('!') || msg.startsWith('.');
 	}
 	function isSentenceEnd(str: string | undefined) {
-		let msg = (str || '').trimEnd();
+		if (!str) return false;
+		let msg = str.trimEnd();
 		return msg.endsWith('!') || msg.endsWith('.');
 	}
 
-	const isMerakyat = data.seed === 'Pavolia Reine';
+	const isMerakyat = $derived(data.seed === 'Pavolia Reine');
 </script>
 
 <div class="page" style="background-color: {data.bgColor};">

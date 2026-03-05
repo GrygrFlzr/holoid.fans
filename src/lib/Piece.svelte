@@ -13,12 +13,12 @@
 		decorated?: boolean;
 	} = $props();
 
-	const seed: bigint = piece.author ? hashStringToBigInt(piece.author) : BigInt(index);
-	const pcg = pcg64(seed);
+	const seed: bigint = $derived(piece.author ? hashStringToBigInt(piece.author) : BigInt(index));
+	const pcg = $derived(pcg64(seed));
 
-	let rotateDeg = pcg.getRandomFloat(-3, 3);
-	let fontWeight = pcg.getRandomInt(400, 700);
-	let hueDeg = pcg.getRandomInt(0, 360);
+	let rotateDeg = $derived(pcg.getRandomFloat(-3, 3));
+	let fontWeight = $derived(pcg.getRandomInt(400, 700));
+	let hueDeg = $derived(pcg.getRandomInt(0, 360));
 </script>
 
 <div
