@@ -1,6 +1,6 @@
 # 2024 Holoro Anniversary Project
 
-This project features sentence-chaining letter where the data is obtained from the Google Sheets `publish` TSV endpoint. 
+This project features sentence-chaining letter where the data is obtained from the Google Sheets `publish` TSV endpoint.
 
 ## Developing
 
