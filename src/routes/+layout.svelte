@@ -1,8 +1,18 @@
 <script>
+	import { page } from '$app/state';
 	let { children } = $props();
+
+	const canonicalUrl = $derived.by(() => {
+		let { url } = page;
+		url.protocol = 'https:';
+		url.host = 'holoid.fans';
+		url.port = '443';
+		return url;
+	});
 </script>
 
 <svelte:head>
+	<link rel="canonical" href={canonicalUrl.href} />
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
 	<link
